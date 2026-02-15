@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Code.Architecture.MeshTest {
+namespace Code.Architecture.MeshTests {
     public class MeshTest : MonoBehaviour {
         [SerializeField] private Vector3[] vertices;
         [SerializeField] private int[] triangles;

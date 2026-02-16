@@ -437,7 +437,6 @@ GameObject:
   - component: {fileID: 629924813}
   - component: {fileID: 629924812}
   - component: {fileID: 629924816}
-  - component: {fileID: 629924817}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -519,33 +518,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 629924811}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 144bb33b78994e8439d289807aacf075, type: 3}
+  m_Script: {fileID: 11500000, guid: 47cfd25f409a5af4a9608269611c3b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mesh: {fileID: 0}
-  meshFilter: {fileID: 629924813}
-  _uv: []
-  _vertices: []
-  _triangles: 
-  _SizeGrid: 1.5
---- !u!114 &629924817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 629924811}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 454827a0b22a54642a65e5488ada5761, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vertices: []
-  triangles: 
-  meshFilter: {fileID: 629924813}
-  mesh: {fileID: 0}
-  Width: 1
-  Height: 1
+  Grid:
+    _SizeCell: {x: 0, y: 0, z: 0}
+    _mesh: {fileID: 0}
+    _vertictes: []
+    _triangles: 
+  meshFilter: {fileID: 0}
+  X: 2
+  Y: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

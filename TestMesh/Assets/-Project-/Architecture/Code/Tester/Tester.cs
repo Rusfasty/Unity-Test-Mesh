@@ -4,33 +4,32 @@ namespace Code.Architecture.Test {
     public class Tester : MonoBehaviour {
         [SerializeField] private Grid.Grid2D Grid;
         [SerializeField] private MeshFilter meshFilter;
+        [SerializeField] private Camera Camera;
         [SerializeField] private int X, Y;
+        [SerializeField] private float Width, Hidht;
+        [SerializeField] private Vector3 _WorldPoint;
+
         public void Awake() {
-            Grid = new(1);
+            Grid = new(_WorldPoint);
+        }
+        public void Creale() {
+            Grid.SetSizeGrid(Width, Hidht);
             Grid.CreateGrid(X, Y);
 
             meshFilter.mesh = Grid.GetMesh();
-            //for (int y = 0, xi = 0, vi = 0; y < Hidht; y++,vi += 4)
-            //    for (int x = 0; x < Width; x++, xi += 4) {
-            //        _vertictes[xi + vi] = new Vector3(x / _SizeCell.x, y / _SizeCell.y);
-            //        _vertictes[xi + 1 + vi] = new Vector3(x / _SizeCell.x, y / _SizeCell.y + 1);
-            //        _vertictes[xi + 2 + vi] = new Vector3(x / _SizeCell.x + 1, y / _SizeCell.y + 1);
-            //        _vertictes[xi + 3 + vi] = new Vector3(x / _SizeCell.x + 1, y / _SizeCell.y);
-            //    }
-            //_triangles[vi] = 0;
-            //_triangles[vi + 1] = 2;
-            //_triangles[vi + 2] = 3;
-
-            //_triangles[vi + 3] = 0;
-            //_triangles[vi + 4] = 3;
-            //_triangles[vi + 5] = 1;
-
-            //_triangles[vi] = _triangles[vi + 3] = iv;
-            //_triangles[vi + 1] = iv + 2;
-            //_triangles[vi + 2] = _triangles[vi + 4] = iv + 3;
-            //_triangles[vi + 5] = iv + 1;
         }
+        public void Update() {
+            if (Input.GetKey(KeyCode.F)) {
+                Grid.SetSizeGrid(Width, Hidht);
+                Grid.CreateGrid(X, Y);
 
-
+                meshFilter.mesh = Grid.GetMesh();
+            }
+            if (Input.GetMouseButtonDown(0)) {
+                Grid.GetXY(Camera.ScreenToWorldPoint(Input.mousePosition), out var x, out int y);
+                Debug.Log($"X:{x}, Y:{y}");
+                Grid.SetTile(new Vector3(x, y), 66);
+            }
+        }
     }
 }

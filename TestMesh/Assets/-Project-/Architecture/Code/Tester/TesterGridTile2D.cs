@@ -10,12 +10,13 @@ namespace Code.Architecture.Test {
         private void Start() {
             _grid = new(new Vector2(0,0));
             _grid.UpdateDataEvent += UpdateDataGrid;
+            _grid.CreateGrid(3,3);
         }
         private void Update() {
             if (Input.GetMouseButtonDown(0)) {
                 _grid.GetXY(_camera.ScreenToWorldPoint(Input.mousePosition),out var x,out var y);
                 Debug.Log($"X:{x}, Y:{y}");
-                _grid.CreateCell(new Vector2Int(x,y),new Vector2Int(1,1));
+                _grid.CreateCell(new Vector2Int(x,y),new Vector2Int(3,7));
             }
         }
         private void UpdateDataGrid() {

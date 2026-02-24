@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 
@@ -22,6 +23,17 @@ namespace Code.Architecture.Grid {
 
         public void CreateGrid(int Widht, int Hidht) {
             _mesh = new();
+            _vertictes = new Vector3[(Widht + 1) * (1 + Hidht)];
+            _uv = new Vector2[_vertictes.Length];
+            //for (int y = 0, Index = 0; y <= Hidht; y++)
+            //    for (int x = 0; x <= Widht; x++, Index++) {
+            //        _vertictes[Index] = new Vector3(x / _SizeCell.x, y / _SizeCell.y);
+            //    }
+            _triangles = new int[Widht * Hidht * 6];
+
+            for (int y = 0; y < Hidht; y++)
+                for (int x = 0; x < Widht; x++)
+                    CreateCell(new Vector2Int(x,y),new Vector2Int((int)_SizeCell.x, (int)_SizeCell.y));
             _mesh.vertices = _vertictes;
             _mesh.uv = _uv;
             _mesh.triangles = _triangles;
@@ -35,13 +47,14 @@ namespace Code.Architecture.Grid {
             UpdateDataEvent?.Invoke();
         }
         public void CreateCell(Vector2Int XY,Vector2Int Size) {
-            _vertictes = new Vector3[(Size.x + 1) * (1 + Size.y)];
+            //_vertictes = new Vector3[(Size.x + 1) * (1 + Size.y)];
             for (int y = 0, Index = 0; y <= Size.y; y++)
                 for (int x = 0; x <= Size.x; x++, Index ++) {
                     _vertictes[Index] = new Vector3(x / _SizeCell.x + XY.x, y / _SizeCell.y + XY.y);
+                    _uv[Index] = new Vector2((float)x / Size.x, (float)y / Size.y);
                 }
 
-            _triangles = new int[Size.x * Size.y * 6];
+            //_triangles = new int[Size.x * Size.y * 6];
             for (int y = 0, vi = 0, iv = 0; y < Size.x; y++, iv++)
                 for (int x = 0; x < Size.y; x++, vi += 6, iv++) {
                     _triangles[vi] = iv + Size.x + 1;
@@ -50,17 +63,6 @@ namespace Code.Architecture.Grid {
                     _triangles[vi + 5] = iv + 1;
                 }
             UpdateDate();
-        }
-        private void CreateVeticte() {
-            //_vertictes = new Vector3[(Widht + 1) * (1 + Hidht)];
-
-        }
-        private void CreateTriangle() {
-            //_triangles = new int[Widht * Hidht * 6];
-
-        }
-        private void CreateUV() {
-
         }
         public void SetSizeCell(Vector2 Size) {
             _SizeCell = Size;

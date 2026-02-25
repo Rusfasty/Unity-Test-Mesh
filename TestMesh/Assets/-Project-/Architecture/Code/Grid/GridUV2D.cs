@@ -30,10 +30,15 @@ namespace Code.Architecture.Grid {
             _triangles[5] = 3;
 
             _uv = new Vector2[4];
-            _uv[0] = new Vector3(0,1);
-            _uv[1] = new Vector3(1,1);
-            _uv[2] = new Vector3(0,0);
-            _uv[3] = new Vector3(1,0);
+            //_uv[0] = new Vector3(0,1);
+            //_uv[1] = new Vector3(1,1);
+            //_uv[2] = new Vector3(0,0);
+            //_uv[3] = new Vector3(1,0);
+
+            _uv[0] = new Vector3(0,(float) (16 + 16) / 32);
+            _uv[1] = new Vector3((float)16 / 32, (float)(16 + 16) / 32);
+            _uv[2] = new Vector3(0, (float)16 / 32);
+            _uv[3] = new Vector3((float)16 / 32, (float)16 / 32);
 
             _mesh.vertices = _vertictes;
             _mesh.uv = _uv;
